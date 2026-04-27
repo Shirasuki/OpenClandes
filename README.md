@@ -2,6 +2,8 @@
 
 OpenClandes is the public documentation and protocol-contract repository for Clandes.
 
+中文文档: [README.zh-CN.md](README.zh-CN.md)
+
 This repository intentionally does **not** publish the server source code. It contains only:
 
 - user-facing deployment and operation docs
