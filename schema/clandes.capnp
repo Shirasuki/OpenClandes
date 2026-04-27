@@ -1,0 +1,27 @@
+@0xa6b7c8d9e0f1a2b3;
+
+using Account     = import "account.capnp";
+using Auth        = import "claude_auth.capnp";
+using Query       = import "claude_query.capnp";
+using CodexAuth   = import "codex_auth.capnp";
+using CodexQuery  = import "codex_query.capnp";
+using Proxy       = import "proxy.capnp";
+using Policy      = import "policy.capnp";
+
+# 根 capability：客户端连接后先调用 auth 拿到 ClandesService
+interface Bootstrap {
+  # 无需鉴权时 token 传空字符串
+  auth @0 (token :Text) -> (service :ClandesService);
+}
+
+interface ClandesService {
+  accountService     @0 () -> (svc :Account.AccountService);
+  claudeAuthService  @1 () -> (svc :Auth.ClaudeAuthService);
+  claudeQueryService @2 () -> (svc :Query.ClaudeQueryService);
+  proxyService       @3 () -> (svc :Proxy.ProxyService);
+  policyService      @4 () -> (svc :Policy.PolicyService);
+  # Cargo semver of the running clandes-server binary.
+  getVersion         @5 () -> (version :Text);
+  codexAuthService   @6 () -> (svc :CodexAuth.CodexAuthService);
+  codexQueryService  @7 () -> (svc :CodexQuery.CodexQueryService);
+}

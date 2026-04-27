@@ -1,0 +1,7 @@
+*.tar.gz
+*.sha256
+.env
+.env.*
+!.env.example
+!.env.docker.example
+dist/
